@@ -11,6 +11,7 @@
 <script>
 import Dropdown from '../Dropdowns/Dropdown';
 import Filters from '../Settings/Filters';
+import { constants } from 'os';
 
 export default {
   name: 'SettingsDropdown',
@@ -28,6 +29,9 @@ export default {
       }
     }
   },
+  mounted: function () {
+    this.bindScrollEvent();
+  },
   data: function () {
     return {
       isVisible: false,
@@ -38,6 +42,21 @@ export default {
     setFilter (filter) {
       this.$refs.dropdown.closeDropdown();
       this.$emit('filterChanged', filter);
+    },
+    bindScrollEvent () {
+      const scrollHeightToCloseDropdown = this.getScrollHeightToCloseDropdown();
+      document.addEventListener('scroll', event => this.onScroll(event, scrollHeightToCloseDropdown) , true);
+    },
+    onScroll (event, scrollHeightToCloseDropdown) {
+      if (window.scrollY > scrollHeightToCloseDropdown) {
+        this.$refs.dropdown.closeDropdown();
+      }
+    },
+    getScrollHeightToCloseDropdown () {
+      const navbarHeight = document.querySelector('nav.navbar').offsetHeight;
+      const sectionActionsHeight = document.querySelector('.head-sectionActions').offsetHeight;
+      const offset = 20;
+      return navbarHeight + sectionActionsHeight - offset;
     }
   }
 };
