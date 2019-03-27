@@ -18,6 +18,11 @@ export default {
       isOpen: false
     };
   },
+  mounted() {
+    this.$root.$on('closeDropdown', () => {
+      this.closeDropdown();
+    })
+  },
   methods: {
     toggleDropdown () {
       this.isOpen = !this.isOpen;

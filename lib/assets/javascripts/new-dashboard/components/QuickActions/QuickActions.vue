@@ -25,6 +25,13 @@ export default {
       isOpen: false
     };
   },
+  mounted() {
+    this.$root.$on('closeQuickActions', () => {
+      if (this.isOpen) {
+        this.closeDropdown();
+      }
+    })
+  },
   props: {
     actions: Array
   },

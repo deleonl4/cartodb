@@ -16,6 +16,7 @@
 
           <SettingsDropdown
             section="maps"
+            v-closeOnScroll="{ selectorsArray: ['nav.navbar', '.head-sectionActions'], functionHandle: 'closeDropdown' }"
             v-if="!selectedMaps.length"
             :filter="appliedFilter"
             :order="appliedOrder"
@@ -57,6 +58,7 @@
       <ul :class="[isCondensed ? 'grid grid-column grid-cell' : 'grid']" v-if="!isFetchingMaps && currentEntriesCount > 0">
         <li v-for="map in maps" :class="[isCondensed ? condensedCSSClasses : cardCSSClasses]" :key="map.id">
           <MapCard
+            v-closeOnScroll="{selectorsArray: ['nav.navbar', '.head-sectionActions'], functionHandle: 'closeQuickActions' }"
             :condensed="isCondensed"
             :visualization="map"
             :isSelected="isMapSelected(map)"
