@@ -14,22 +14,30 @@
           v-if="isCurrentStep(2)"
           :title="'Step 2 Title'"
           :subTitle="'Step 2 Subtitle'"
-          :stepNum="2"></WizardStep>
+          :stepNum="2">
+          <LoadCARTOVL></LoadCARTOVL>
+        </WizardStep>
         <WizardStep
           v-if="isCurrentStep(3)"
           :title="'Step 3'"
           :subTitle="'Step 3 Subtitle'"
-          :stepNum="3"></WizardStep>
+          :stepNum="3">
+          <DefineContainer></DefineContainer>
+        </WizardStep>
         <WizardStep
           v-if="isCurrentStep(4)"
           :title="'Step 4'"
           :subTitle="'Step 4 Subtitle'"
-          :stepNum="4"></WizardStep>
+          :stepNum="4">
+          <CreateTheMap></CreateTheMap>
+        </WizardStep>
         <WizardStep
           v-if="isCurrentStep(5)"
           :title="'Step 5'"
           :subTitle="'Step 5 Subtitle'"
-          :stepNum="5"></WizardStep>
+          :stepNum="5">
+          <AddDataLayer></AddDataLayer>
+        </WizardStep>
         <Footer :stepNames="stepNames" :currentStep="step"  @goToStep="goToStep"></Footer>
       </div>
     </Modal>
@@ -41,6 +49,11 @@ import WizardStep from 'new-dashboard/components/Wizard/WizardStep.vue';
 import Header from 'new-dashboard/components/Wizard/Header.vue';
 import Footer from 'new-dashboard/components/Wizard/Footer.vue';
 import Modal from 'new-dashboard/components/Modal.vue';
+// Steps
+import LoadCARTOVL from 'new-dashboard/components/Wizard/Steps/CARTOVL/LoadCARTOVL.vue';
+import DefineContainer from 'new-dashboard/components/Wizard/Steps/CARTOVL/DefineContainer.vue';
+import CreateTheMap from 'new-dashboard/components/Wizard/Steps/CARTOVL/CreateTheMap.vue';
+import AddDataLayer from 'new-dashboard/components/Wizard/Steps/CARTOVL/AddDataLayer.vue';
 
 export default {
   name: 'Wizard',
@@ -48,7 +61,11 @@ export default {
     WizardStep,
     Header,
     Footer,
-    Modal
+    Modal,
+    LoadCARTOVL,
+    DefineContainer,
+    CreateTheMap,
+    AddDataLayer
   },
   props: {
     maxSteps: {
@@ -91,7 +108,7 @@ export default {
 .wizard {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: 100%;
   background-color: $onboarding__bg-color;
 }
